@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ElectronJS App</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+</head>
+<body>
+  <nav>
+    <div class="nav-wrapper">
+      <a class="brand-logo center">ElectronJS APP</a>   
+    </div>
+  </nav>
+  <ul></ul>
+
+  <div class="container">
+    <form>
+      <h3 class="brand-logo center">LOGIN</h3>
+      <div>
+        <!-- <label>Username</label>
+        <input type="text" id="username" autofocus>-->
+        <label for="username"> Username </label> 
+        <input name="username" id="username" placeholder="Enter username" value="" type="text" autofocus>
+      
+      </div>
+      <div>
+        <!-- <label>Password</label>
+        <input type="password" id="passwrd" > -->
+
+        <label for="psw"> Password </label>
+        <input name="password" id="psw" placeholder="Enter password" value="" type="text">
+      
+      </div>
+      <!-- <input id="login" value="Login" type="button" name="Login" onclick="validationcheck();"> -->
+      <button class="waves-effect waves-light btn" type="submit"><a style="color: white;" href="dashboard.html">Login</a></button>
+    </form>
+  </div>
+
+
+  <script>
+    const electron = require('electron');
+    var sqlite3 = require('sqlite3').verbose();
+    var db = new sqlite3.Database(':memory:');
+
+    
+
+try {
+  db = openDatabase("ElectronJSApp");
+} catch (e) {
+  console.log(e);
+}
+
+try {
+  
+    
+    db.transaction(function(tx) {
+    var sql;
+
+    
+    sql = `DROP TABLE Users`;
+
+    tx.executeSql(sql, [], function(tx, result) {
+      console.log('RESULT:', result);
+    }, function(tx, error) {
+      console.log('ERROR:', error);
+    });
+    
+
+    sql = `
+      CREATE TABLE IF NOT EXISTS Users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        username VARCHAR(100) NOT NULL UNIQUE,
+        password VARCHAR(100) NOT NULL 
+      );
+    `;
+
+    tx.executeSql(sql, [], function(tx, result) {
+      console.log('RESULT:', result);
+    }, function(tx, error) {
+      console.log('ERROR:', error);
+    });
+
+    
+    sql = `
+      SELECT * FROM Users WHERE username='admin'
+    `;
+
+    tx.executeSql(sql, [], function(tx, result) {
+      if (result.rows.length == 1)
+      {
+        var user = result.rows.item(0);
+        console.log(user);
+      }
+    }, function(tx, error) {
+      console.log('ERROR:', error);
+    });
+  
+
+    
+    sql = `
+      INSERT INTO Users (
+        username,
+        password
+      ) VALUES (
+        'admin',
+        'admin'
+      );
+    `;
+
+    tx.executeSql(sql, [], function(tx, result) {
+      console.log('RESULT:', result);
+    }, function(tx, error) {
+      console.log('ERROR:', error);
+    });
+  
+
+  });
+} catch (e) {
+  console.log(e)
+}
+
+function validationcheck() {
+  if (document.mylogin.username.value == "") {
+    console.log('please enter username');
+    document.mylogin.username.focus();
+  } else if (document.mylogin.psw.value == "") {
+    console.log('please enter password');
+    document.mylogin.password.focus();
+  } else {
+    var username = document.mylogin.username.value;
+    var password = document.mylogin.password.value;
+    try {
+
+      db.transaction(function(tx) {
+        tx.executeSql(`SELECT * FROM Users WHERE username='${username}'`, [], function(tx, result) {
+          if (result.rows.length == 1) {
+            var user = result.rows.item(0);
+
+            if (username == user.username && password == user.password) {
+              console.log('LOGIN SUCCESS');
+            } else {
+              console.log('LOGIN FAILURE');
+            }
+          }
+        }, function(tx, error) {
+          console.log('ERROR:', error);
+        });
+      });
+
+    } catch (e) {
+      console.log(e);
+    }
+  }
+}
+    const {ipcRenderer} = electron;
+    // const ul = document.querySelector('ul');
+
+    // ipcRenderer.on('item:add', function(e, item){
+    //   ul.className = 'collection';
+    //   const li = document.createElement('li');
+    //   li.className = 'collection-item';
+    //   const itemText = document.createTextNode(item);
+
+    //   li.appendChild(itemText);
+    //   ul.appendChild(li);
+    // });
+
+    // ipcRenderer.on('item:clear', function(){
+    //   ul.className = '';
+    //   ul.innerHTML = '';
+    // });
+
+    // ul.addEventListener('dblclick', removeItem);
+
+    // function removeItem(e){
+    //   event.target.remove();
+    //   if(ul.children.length == 0){
+    //     ul.className = '';
+    //   }
+    // }
+  </script>
+</body>
+</html>

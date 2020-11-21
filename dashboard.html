@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <!-- <style>
+    body {
+      font-family: 'Lato', sans-serif;
+    }
+    
+    .overlay {
+      height: 0%;
+      width: 50%;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: rgb(0,0,0);
+      background-color: rgba(0,0,0, 0.9);
+      overflow-y: hidden;
+      transition: 0.5s;
+    }
+    
+    .overlay-content {
+      position: relative;
+      top: 25%;
+      width: 100%;
+      text-align: left;
+      margin-top: 30px;
+    }
+    
+    .overlay a {
+      padding: 8px;
+      text-decoration: none;
+      font-size: 36px;
+      color: #818181;
+      display: block;
+      transition: 0.3s;
+    }
+    
+    .overlay a:hover, .overlay a:focus {
+      color: #f1f1f1;
+    }
+    
+    .overlay .closebtn {
+      position: absolute;
+      top: 20px;
+      right: 45px;
+      font-size: 60px;
+    }
+    
+    @media screen and (max-height: 450px) {
+      .overlay {overflow-y: auto;}
+      .overlay a {font-size: 20px}
+      .overlay .closebtn {
+      font-size: 40px;
+      top: 15px;
+      right: 35px;
+      }
+    }
+    </style> -->
+
+<style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+    }
+    
+    .navbar {
+      overflow: hidden;
+      background-color: #333; 
+    }
+    
+    .navbar a {
+      float: left;
+      font-size: 16px;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+    
+    .subnav {
+      float: left;
+      overflow: hidden;
+    }
+    
+    .subnav .subnavbtn {
+      font-size: 16px;  
+      border: none;
+      outline: none;
+      color: white;
+      padding: 14px 16px;
+      background-color: inherit;
+      font-family: inherit;
+      margin: 0;
+    }
+    
+    .navbar a:hover, .subnav:hover .subnavbtn {
+      background-color: red;
+    }
+    
+    .subnav-content {
+      display: none;
+      position: absolute;
+      left: 0;
+      background-color: red;
+      width: 100%;
+      z-index: 1;
+    }
+    
+    .subnav-content a {
+      float: left;
+      color: white;
+      text-decoration: none;
+    }
+    
+    .subnav-content a:hover {
+      background-color: #eee;
+      color: black;
+    }
+    
+    .subnav:hover .subnav-content {
+      display: block;
+    }
+    </style>
+    
+    
+</head>
+<body>
+  
+  
+<!-- <div id="myNav" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <div class="overlay-content">
+      <a href="#">Home</a>
+      <a href="manage.html">Manage</a>
+      <a href="#">Views</a>
+      <a href="#">Distribute</a>      
+    </div>
+  </div>
+  
+  <span style="font-size:20px;cursor:pointer" onclick="openNav()">&#9776; MENU</span>
+  <nav> -->
+
+    <div class="navbar">
+        <a href="#home">Home</a>
+        <a href="#">Manage</a> 
+        <div class="subnav">
+          <button class="subnavbtn">Views <i class="fa fa-caret-down"></i></button>
+          <div class="subnav-content">
+            <a href="layout1.html">Layout1</a>
+            <a href="layout2.html">Layout2</a>
+            <a href="layout3.html">Layout3</a>
+            <a href="video1.html">Layout4</a>
+          </div>
+        </div>
+        <a href="#">Distribute</a> 
+        <a href="mainWindow.html">Logout</a>
+      </div>
+      
+      
+    <div class="nav-wrapper">
+      <a class="brand-logo center">Dashboard</a>   
+    </div>
+  </nav>
+  <ul></ul>
+
+  
+  <!-- <script>
+  function openNav() {
+    document.getElementById("myNav").style.height = "100%";
+  }
+  
+  function closeNav() {
+    document.getElementById("myNav").style.height = "0%";
+  }
+  </script> -->
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Video1</title>
+  <style type="text/css">
+   #videoElement{
+       width: auto;
+       height:auto;
+   }
+
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+</head>
+<body bgcolor="Red">
+    <button class="waves-effect btn" type="submit"><a style="color: white;" href="dashboard.html">Back</a></button>
+    
+    <div id="container">
+        <h1><marquee>This is Video 1</marquee></h1>
+        <video autoplay="true" id="videoElement">
+
+        </video>
+    </div>
+
+    <script type="text/javascript">
+        var video= document.querySelector("#videoElement");
+        navigator.getUserMedia=navigator.getUserMedia||navigator.webkitGetUserMedia||
+        navigator.mozGetUserMedia||navigator.msGetUserMedia|| navigator.oGetUserMedia;
+
+        if(navigator.getUserMedia){
+            navigator.getUserMedia({video:true},handleVideo,videoError);
+        }
+
+        function handleVideo(stream){
+            video.src=window.URL.createObjectURL(stream);
+        }
+        function videoError(e){
+
+
+        }
+
+    </script>
+</body>
+
+</html>
